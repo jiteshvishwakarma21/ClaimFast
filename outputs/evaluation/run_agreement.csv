@@ -1,0 +1,6 @@
+strategy,records_compared,identical_across_all_runs,agreement_rate
+chain_of_thought,60,60,1.0
+few_shot_3,60,60,1.0
+few_shot_5,60,60,1.0
+few_shot_8,60,60,1.0
+zero_shot,60,60,1.0

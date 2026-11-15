@@ -1,0 +1,6 @@
+strategy,injury_cases,injury_true_positives,injury_recall,high_urgency_cases,high_urgency_true_positives,high_urgency_recall,classification_errors_run1,records_with_extraction_errors_run1
+chain_of_thought,6,6,1.0,8,7,0.875,2,26
+few_shot_3,6,6,1.0,8,6,0.75,10,24
+few_shot_5,6,5,0.8333,8,5,0.625,5,22
+few_shot_8,6,5,0.8333,8,5,0.625,3,19
+zero_shot,6,5,0.8333,8,8,1.0,4,29

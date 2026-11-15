@@ -1,0 +1,1073 @@
+{
+  "classification": [
+    {
+      "strategy": "chain_of_thought",
+      "runs": 3,
+      "mean_accuracy": 0.9666666666666667,
+      "mean_macro_f1": 0.9703130374957001,
+      "mean_extraction_exact_match": 0.5166666666666667,
+      "mean_latency_seconds": 3.0196944444444447,
+      "mean_total_tokens": 418.46666666666664
+    },
+    {
+      "strategy": "few_shot_3",
+      "runs": 3,
+      "mean_accuracy": 0.8333333333333334,
+      "mean_macro_f1": 0.8357982059220449,
+      "mean_extraction_exact_match": 0.5833333333333334,
+      "mean_latency_seconds": 2.430911111111111,
+      "mean_total_tokens": 607.7333333333333
+    },
+    {
+      "strategy": "few_shot_5",
+      "runs": 3,
+      "mean_accuracy": 0.9166666666666666,
+      "mean_macro_f1": 0.9330513784461153,
+      "mean_extraction_exact_match": 0.6333333333333333,
+      "mean_latency_seconds": 2.0889333333333333,
+      "mean_total_tokens": 659.5
+    },
+    {
+      "strategy": "few_shot_8",
+      "runs": 3,
+      "mean_accuracy": 0.95,
+      "mean_macro_f1": 0.9538847117794487,
+      "mean_extraction_exact_match": 0.6833333333333333,
+      "mean_latency_seconds": 3.088111111111111,
+      "mean_total_tokens": 1475.5
+    },
+    {
+      "strategy": "zero_shot",
+      "runs": 3,
+      "mean_accuracy": 0.9333333333333333,
+      "mean_macro_f1": 0.9401280980228349,
+      "mean_extraction_exact_match": 0.48333333333333334,
+      "mean_latency_seconds": 1.516788888888889,
+      "mean_total_tokens": 455.3666666666667
+    }
+  ],
+  "run_metrics": [
+    {
+      "strategy": "chain_of_thought",
+      "run": "run_1",
+      "records": 60,
+      "accuracy": 0.9666666666666667,
+      "macro_f1": 0.9703130374957001,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.5166666666666667,
+      "average_latency_seconds": 3.0204166666666667,
+      "average_total_tokens": 418.46666666666664
+    },
+    {
+      "strategy": "chain_of_thought",
+      "run": "run_2",
+      "records": 60,
+      "accuracy": 0.9666666666666667,
+      "macro_f1": 0.9703130374957001,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.5166666666666667,
+      "average_latency_seconds": 3.0655666666666668,
+      "average_total_tokens": 418.46666666666664
+    },
+    {
+      "strategy": "chain_of_thought",
+      "run": "run_3",
+      "records": 60,
+      "accuracy": 0.9666666666666667,
+      "macro_f1": 0.9703130374957001,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.5166666666666667,
+      "average_latency_seconds": 2.9731,
+      "average_total_tokens": 418.46666666666664
+    },
+    {
+      "strategy": "few_shot_3",
+      "run": "run_1",
+      "records": 60,
+      "accuracy": 0.8333333333333334,
+      "macro_f1": 0.8357982059220449,
+      "valid_classifications": 59,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.5833333333333334,
+      "average_latency_seconds": 2.2923833333333334,
+      "average_total_tokens": 607.7333333333333
+    },
+    {
+      "strategy": "few_shot_3",
+      "run": "run_2",
+      "records": 60,
+      "accuracy": 0.8333333333333334,
+      "macro_f1": 0.8357982059220449,
+      "valid_classifications": 59,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.5833333333333334,
+      "average_latency_seconds": 2.4467666666666665,
+      "average_total_tokens": 607.7333333333333
+    },
+    {
+      "strategy": "few_shot_3",
+      "run": "run_3",
+      "records": 60,
+      "accuracy": 0.8333333333333334,
+      "macro_f1": 0.8357982059220449,
+      "valid_classifications": 59,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.5833333333333334,
+      "average_latency_seconds": 2.5535833333333335,
+      "average_total_tokens": 607.7333333333333
+    },
+    {
+      "strategy": "few_shot_5",
+      "run": "run_1",
+      "records": 60,
+      "accuracy": 0.9166666666666666,
+      "macro_f1": 0.9330513784461153,
+      "valid_classifications": 58,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.6333333333333333,
+      "average_latency_seconds": 2.034883333333333,
+      "average_total_tokens": 659.5
+    },
+    {
+      "strategy": "few_shot_5",
+      "run": "run_2",
+      "records": 60,
+      "accuracy": 0.9166666666666666,
+      "macro_f1": 0.9330513784461153,
+      "valid_classifications": 58,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.6333333333333333,
+      "average_latency_seconds": 2.0784166666666666,
+      "average_total_tokens": 659.5
+    },
+    {
+      "strategy": "few_shot_5",
+      "run": "run_3",
+      "records": 60,
+      "accuracy": 0.9166666666666666,
+      "macro_f1": 0.9330513784461153,
+      "valid_classifications": 58,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.6333333333333333,
+      "average_latency_seconds": 2.1535,
+      "average_total_tokens": 659.5
+    },
+    {
+      "strategy": "few_shot_8",
+      "run": "run_1",
+      "records": 60,
+      "accuracy": 0.95,
+      "macro_f1": 0.9538847117794487,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.6833333333333333,
+      "average_latency_seconds": 3.05355,
+      "average_total_tokens": 1475.5
+    },
+    {
+      "strategy": "few_shot_8",
+      "run": "run_2",
+      "records": 60,
+      "accuracy": 0.95,
+      "macro_f1": 0.9538847117794487,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.6833333333333333,
+      "average_latency_seconds": 3.1112,
+      "average_total_tokens": 1475.5
+    },
+    {
+      "strategy": "few_shot_8",
+      "run": "run_3",
+      "records": 60,
+      "accuracy": 0.95,
+      "macro_f1": 0.9538847117794487,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.6833333333333333,
+      "average_latency_seconds": 3.0995833333333334,
+      "average_total_tokens": 1475.5
+    },
+    {
+      "strategy": "zero_shot",
+      "run": "run_1",
+      "records": 60,
+      "accuracy": 0.9333333333333333,
+      "macro_f1": 0.9401280980228349,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.48333333333333334,
+      "average_latency_seconds": 1.3343,
+      "average_total_tokens": 455.3666666666667
+    },
+    {
+      "strategy": "zero_shot",
+      "run": "run_2",
+      "records": 60,
+      "accuracy": 0.9333333333333333,
+      "macro_f1": 0.9401280980228349,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.48333333333333334,
+      "average_latency_seconds": 1.37535,
+      "average_total_tokens": 455.3666666666667
+    },
+    {
+      "strategy": "zero_shot",
+      "run": "run_3",
+      "records": 60,
+      "accuracy": 0.9333333333333333,
+      "macro_f1": 0.9401280980228349,
+      "valid_classifications": 60,
+      "json_valid_count": 60,
+      "extraction_record_exact_match": 0.48333333333333334,
+      "average_latency_seconds": 1.8407166666666666,
+      "average_total_tokens": 455.3666666666667
+    }
+  ],
+  "confusion_matrices": {
+    "chain_of_thought_run_1": {
+      "own_damage": {
+        "own_damage": 14,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 10,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 1,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 8,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "chain_of_thought_run_2": {
+      "own_damage": {
+        "own_damage": 14,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 10,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 1,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 8,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "chain_of_thought_run_3": {
+      "own_damage": {
+        "own_damage": 14,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 10,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 1,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 8,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_3_run_1": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 7,
+        "third_party_liability": 3,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 8,
+        "total_loss": 0,
+        "INVALID": 1
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_3_run_2": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 7,
+        "third_party_liability": 3,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 8,
+        "total_loss": 0,
+        "INVALID": 1
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_3_run_3": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 7,
+        "third_party_liability": 3,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 8,
+        "total_loss": 0,
+        "INVALID": 1
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_5_run_1": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 7,
+        "total_loss": 0,
+        "INVALID": 2
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_5_run_2": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 7,
+        "total_loss": 0,
+        "INVALID": 2
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_5_run_3": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 7,
+        "total_loss": 0,
+        "INVALID": 2
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_8_run_1": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_8_run_2": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "few_shot_8_run_3": {
+      "own_damage": {
+        "own_damage": 13,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "zero_shot_run_1": {
+      "own_damage": {
+        "own_damage": 12,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 2,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "zero_shot_run_2": {
+      "own_damage": {
+        "own_damage": 12,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 2,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    },
+    "zero_shot_run_3": {
+      "own_damage": {
+        "own_damage": 12,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 2,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "third_party_liability": {
+        "own_damage": 1,
+        "third_party_liability": 9,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "theft": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 9,
+        "glass_only": 1,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "glass_only": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 9,
+        "not_a_claim": 0,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "not_a_claim": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 9,
+        "total_loss": 0,
+        "INVALID": 0
+      },
+      "total_loss": {
+        "own_damage": 0,
+        "third_party_liability": 0,
+        "theft": 0,
+        "glass_only": 0,
+        "not_a_claim": 0,
+        "total_loss": 8,
+        "INVALID": 0
+      }
+    }
+  }
+}

@@ -1,116 +1,276 @@
 # CLAIMFAST
 ## Experimental Results and Performance Analysis
 
-**Report Date:** 2026-11-06
+**Report Date:** 2026-11-15
 **Project:** Insurance Claim Classification using LLMs
 
 ---
 
 # 1. Introduction
+
 ClaimFast is an experimental project designed to explore the use of Large Language Models (LLMs) for classifying insurance claim messages and extracting structured information.
-This report compares four prompting approaches: Zero-Shot, Few-Shot 3, Few-Shot 5 and Few-Shot 8.
+
+The experiment compares five prompting strategies: Zero-Shot, Few-Shot with 3 examples, Few-Shot with 5 examples, Few-Shot with 8 examples, and Chain-of-Thought. The objective is to evaluate their classification performance, information extraction quality, safety-related detection, processing latency, and token usage.
 
 # 2. Experimental Methodology
 
-The project evaluates four prompting configurations using recorded model predictions and evaluation results.
+The experiment used a synthetic and anonymised dataset containing 80 labelled insurance-related messages. The dataset was divided into:
 
-The experiments are:
-- Zero-Shot Prompting
-- Few-Shot Prompting with 3 examples
-- Few-Shot Prompting with 5 examples
-- Few-Shot Prompting with 8 examples
+- **Development dataset:** 20 records, used for prompt development and selection of few-shot examples.
+- **Held-out test dataset:** 60 records, reserved for final evaluation.
 
-Each experiment contains 20 evaluated records according to the comparison report.
+Five prompting strategies were evaluated:
+
+- **Zero-Shot:** The model received task instructions without labelled examples.
+- **Few-Shot 3:** The prompt included 3 labelled examples selected from the development dataset.
+- **Few-Shot 5:** The prompt included 5 labelled examples selected from the development dataset.
+- **Few-Shot 8:** The prompt included 8 labelled examples selected from the development dataset.
+- **Chain-of-Thought:** The prompt used a reasoning-oriented instruction followed by a request for the final structured JSON response.
+
+All five strategies used the same model, llama3.2:3b, through the local Ollama API. The temperature was set to 0 to reduce variation in model responses.
+
+Each strategy was evaluated three times using the same 60 held-out test records. This resulted in 15 experiment runs and 900 total inference requests (5 strategies × 3 runs × 60 records).
+
+Raw model responses, parsed predictions, JSON validity, parsing errors, latency, and token usage were recorded in JSONL output files. The held-out test dataset was kept separate from prompt development and was used for final evaluation.
 
 # 3. Evaluation Metrics
 
-The following metrics were used:
+The following metrics were used to compare the prompting strategies:
 
-- **JSON Validity:** Percentage of responses that produced valid JSON.
-- **Classification Accuracy:** Percentage of correctly classified claim messages.
-- **Macro F1-Score:** Average F1-score across claim categories, giving equal weight to each category.
-- **Average Latency:** Average processing time in seconds.
-- **Prompt Tokens:** Number of tokens used in the input prompts.
-- **Completion Tokens:** Number of tokens generated in responses.
+- **JSON Validity:** Percentage of model responses that produced valid JSON output.
+- **Classification Accuracy:** Percentage of messages assigned the correct claim category.
+- **Macro F1-Score:** Average F1-score across claim categories, giving equal importance to each category.
+- **Confusion Matrix:** Shows correct classifications and the types of classification errors across claim categories.
+- **Extraction Exact Match:** Percentage of records for which all evaluated extracted fields exactly matched the labelled values.
+- **Field-Level Precision, Recall and F1-Score:** Measures extraction performance separately for individual fields.
+- **Hallucination Rate:** Measures unsupported extracted values, such as dates, locations, or other information not supported by the message.
+- **Injury Recall:** Measures the proportion of labelled injury cases correctly detected.
+- **High-Urgency Recall:** Measures the proportion of labelled high-urgency cases correctly identified.
+- **Run-to-Run Agreement:** Measures consistency of predictions across the three repeated runs.
+- **Average Latency:** Average processing time in seconds per message.
+- **Average Total Tokens:** Average combined input and output token usage per message.
 
-# 4. Experimental Results
+Overall classification and extraction comparison metrics were calculated across three runs. Field-level extraction metrics and injury/high-urgency recall were calculated using Run 1. This distinction is maintained when interpreting the results in the following sections.
 
-| Experiment | Accuracy | Macro F1 | JSON Validity | Latency (s) | Prompt Tokens | Completion Tokens |
-|---|---:|---:|---:|---:|---:|---:|
-| Zero-Shot | 75.00% | 0.7783 | 100.00% | 1.329 | 7699 | 1389 |
-| Few-Shot 3 | 85.00% | 0.8434 | 100.00% | 1.536 | 10539 | 1622 |
-| Few-Shot 5 | 80.00% | 0.8278 | 100.00% | 1.207 | 11979 | 1174 |
-| Few-Shot 8 | 90.00% | 0.9101 | 100.00% | 1.723 | 27879 | 1639 |
+# 4. Final Held-Out Test Results
+
+The following table presents the final evaluation results on the 60-record held-out test dataset. Each prompting strategy was evaluated three times using the same test records.
+
+| Experiment | Accuracy | Macro F1 | Extraction Exact Match |
+|---|---:|---:|---:|
+| Zero-Shot | 93.3% | 0.940 | 48.3% |
+| Few-Shot 3 | 83.3% | 0.836 | 58.3% |
+| Few-Shot 5 | 91.7% | 0.933 | 63.3% |
+| Few-Shot 8 | 95.0% | 0.954 | 68.3% |
+| Chain-of-Thought | 96.7% | 0.970 | 51.7% |
+
+The results show that Chain-of-Thought achieved the highest classification accuracy and Macro F1-score. Few-Shot 8 achieved the highest extraction exact-match score.
+
+These findings indicate that classification performance and information extraction performance are different aspects of the task. A strategy that performs well in classification does not necessarily produce the best structured extraction results.
 
 # 5. Classification Accuracy Analysis
 
-- **Zero-Shot:** 75.00% accuracy.
-- **Few-Shot 3:** 85.00% accuracy.
-- **Few-Shot 5:** 80.00% accuracy.
-- **Few-Shot 8:** 90.00% accuracy.
+The final classification accuracy was calculated using 60 held-out test records for each strategy.
 
-The highest classification accuracy was achieved by **Few-Shot 8**, with an accuracy of 90.00%.
+| Strategy | Correct Predictions | Accuracy |
+|---|---:|---:|
+| Zero-Shot | 56/60 | 93.3% |
+| Few-Shot 3 | 50/60 | 83.3% |
+| Few-Shot 5 | 55/60 | 91.7% |
+| Few-Shot 8 | 57/60 | 95.0% |
+| Chain-of-Thought | 58/60 | 96.7% |
+
+Chain-of-Thought achieved the highest classification accuracy at 96.7%, followed by Few-Shot 8 at 95.0%.
+
+Few-Shot 3 performed below Zero-Shot, while Few-Shot 5 also remained slightly below Zero-Shot. This indicates that increasing the number of examples does not automatically improve classification performance.
 
 # 6. Macro F1-Score Analysis
 
-The highest Macro F1-score was achieved by **Few-Shot 8**, with a score of 0.9101.
+| Strategy | Macro F1-Score |
+|---|---:|
+| Zero-Shot | 0.940 |
+| Few-Shot 3 | 0.836 |
+| Few-Shot 5 | 0.933 |
+| Few-Shot 8 | 0.954 |
+| Chain-of-Thought | 0.970 |
 
-# 7. Processing Latency Analysis
+Chain-of-Thought achieved the highest Macro F1-score of 0.970, indicating strong classification performance across the claim categories.
 
-- **Zero-Shot:** 1.329 seconds.
-- **Few-Shot 3:** 1.536 seconds.
-- **Few-Shot 5:** 1.207 seconds.
-- **Few-Shot 8:** 1.723 seconds.
+Few-Shot 8 followed with a score of 0.954. Few-Shot 3 recorded the lowest Macro F1-score at 0.836.
 
-**Few-Shot 5** recorded the lowest average latency at 1.207 seconds.
+# 7. Safety and High-Risk Detection Analysis
 
-# 8. Token Usage Analysis
+Safety-related performance was evaluated using injury detection recall and high-urgency recall on the held-out test dataset. These metrics were calculated using Run 1 of each strategy.
 
-- **Zero-Shot:** 9,088 total tokens (7,699 prompt + 1,389 completion).
-- **Few-Shot 3:** 12,161 total tokens (10,539 prompt + 1,622 completion).
-- **Few-Shot 5:** 13,153 total tokens (11,979 prompt + 1,174 completion).
-- **Few-Shot 8:** 29,518 total tokens (27,879 prompt + 1,639 completion).
+| Strategy | Injury Recall | High-Urgency Recall |
+|---|---:|---:|
+| Zero-Shot | 83.33% | 100.00% |
+| Few-Shot 3 | 100.00% | 75.00% |
+| Few-Shot 5 | 83.33% | 62.50% |
+| Few-Shot 8 | 83.33% | 62.50% |
+| Chain-of-Thought | 100.00% | 87.50% |
 
-# 9. Field-Level Accuracy Analysis
+Zero-Shot detected all 8 high-urgency cases, achieving 100% high-urgency recall. However, it detected only 5 of the 6 injury cases.
 
-The following table compares the accuracy of individual information extraction fields.
+Few-Shot 3 and Chain-of-Thought detected all 6 injury cases. Chain-of-Thought also achieved 87.50% high-urgency recall by detecting 7 of the 8 high-urgency cases.
 
-| Field | Zero-Shot | Few-Shot 3 | Few-Shot 5 | Few-Shot 8 |
+Few-Shot 5 and Few-Shot 8 achieved 62.50% high-urgency recall, indicating that they missed 3 out of 8 high-urgency cases.
+
+These results demonstrate that classification accuracy and extraction performance alone are insufficient for evaluating an insurance claim-processing system. Missing an injury-related or high-urgency case could have serious operational consequences.
+
+For production deployment, ClaimFast should use risk-based routing, with human review for injury-related, high-urgency, ambiguous, or low-confidence messages. Safety thresholds should be validated using a larger, independently labelled dataset.
+
+*Note: These safety metrics are based on Run 1 and should not be interpreted as three-run aggregate metrics.*
+
+# 8. Processing Latency Analysis
+
+The average processing latency was calculated across three runs of the 60-record held-out test dataset.
+
+| Strategy | Average Latency (seconds/message) |
+|---|---:|
+| Zero-Shot | 1.517 |
+| Few-Shot 3 | 2.431 |
+| Few-Shot 5 | 2.089 |
+| Few-Shot 8 | 3.088 |
+| Chain-of-Thought | 3.020 |
+
+Zero-Shot recorded the lowest average latency at approximately 1.517 seconds per message. Few-Shot 8 recorded the highest average latency at approximately 3.088 seconds per message.
+
+These results indicate that larger prompting configurations can require more processing time. However, latency should be considered alongside classification accuracy and extraction quality.
+
+# 9. Token Usage Analysis
+
+The following table presents the average total token usage per message across three runs.
+
+| Strategy | Average Total Tokens per Message |
+|---|---:|
+| Zero-Shot | 455.37 |
+| Few-Shot 3 | 607.73 |
+| Few-Shot 5 | 659.50 |
+| Few-Shot 8 | 1475.50 |
+| Chain-of-Thought | 418.47 |
+
+Few-Shot 8 consumed the highest average number of tokens, at approximately 1475.50 tokens per message. Chain-of-Thought recorded the lowest average total token usage at approximately 418.47 tokens per message in this experiment.
+
+Token usage depends on both the input prompt and the generated response. These figures represent average total tokens, not separate prompt and completion token counts. Across all 900 inference requests, the experiment used approximately 650,982 combined input and output tokens, averaging about 723 tokens per request.
+
+# 10. Field-Level Accuracy Analysis
+
+The following table presents the exact-match rate for each extracted field. These field-level metrics were calculated using Run 1 of each strategy.
+
+| Field | Zero-Shot | Few-Shot 3 | Few-Shot 5 | Few-Shot 8 | Chain-of-Thought |
+|---|---:|---:|---:|---:|---:|
+| estimated_amount_inr | 100.00% | 98.33% | 100.00% | 98.33% | 98.33% |
+| incident_date | 96.67% | 96.67% | 95.00% | 86.67% | 95.00% |
+| injury_reported | 96.67% | 95.00% | 96.67% | 96.67% | 98.33% |
+| location | 95.00% | 93.33% | 93.33% | 93.33% | 95.00% |
+| police_report_filed | 95.00% | 96.67% | 96.67% | 96.67% | 95.00% |
+| policy_number | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% |
+| urgency | 63.33% | 71.67% | 78.33% | 91.67% | 65.00% |
+| vehicle_reg_no | 91.67% | 96.67% | 91.67% | 96.67% | 91.67% |
+
+The results show that policy number extraction achieved 100% exact-match accuracy across all five strategies.
+
+Few-Shot 8 achieved the highest urgency exact-match rate at 91.67%, while Few-Shot 3 and Few-Shot 8 achieved the highest vehicle registration exact-match rate at 96.67%.
+
+Few-Shot 8 also had the lowest incident-date exact-match rate at 86.67%. Its evaluation recorded eight incident-date hallucinations, showing that a strategy can perform well on one field while making more errors on another.
+
+Chain-of-Thought achieved 98.33% exact match for injury information and 95.00% for location extraction.
+
+These results demonstrate that extraction performance varies significantly between fields and prompting strategies. Field-level precision, recall, F1-score, and hallucination statistics are also available in the generated evaluation file at outputs/evaluation/per_field_metrics.csv.
+
+*Note: Field-level metrics are based on Run 1, whereas the overall strategy comparison uses averages across three runs. Claim classification is evaluated separately in the classification results.*
+
+## 10.1 Output Reliability and Run-to-Run Agreement
+
+All five strategies produced valid JSON in all three runs. Each run contained 60 records, giving 180 valid JSON responses per strategy.
+
+| Strategy | Valid JSON Responses | JSON Validity | Valid Classifications per Run | Run Agreement |
 |---|---:|---:|---:|---:|
-| claim_type | 75.00% | 85.00% | 80.00% | 90.00% |
-| urgency | 45.00% | 75.00% | 80.00% | 75.00% |
-| policy_number | 95.00% | 100.00% | 95.00% | 100.00% |
-| incident_date | 85.00% | 85.00% | 90.00% | 75.00% |
-| location | 100.00% | 90.00% | 95.00% | 90.00% |
-| vehicle_reg_no | 80.00% | 90.00% | 85.00% | 90.00% |
-| estimated_amount_inr | 100.00% | 100.00% | 100.00% | 100.00% |
-| injury_reported | 95.00% | 95.00% | 100.00% | 95.00% |
-| police_report_filed | 95.00% | 100.00% | 100.00% | 100.00% |
+| Zero-Shot | 180/180 | 100% | 60/60 | 100% |
+| Few-Shot 3 | 180/180 | 100% | 59/60 | 100% |
+| Few-Shot 5 | 180/180 | 100% | 58/60 | 100% |
+| Few-Shot 8 | 180/180 | 100% | 60/60 | 100% |
+| Chain-of-Thought | 180/180 | 100% | 60/60 | 100% |
 
-# 10. Experimental Visualization
+Run-to-run agreement was 100% for all strategies: the predictions for all 60 records were identical across the three runs.
 
-The following dashboard presents the graphical comparison of the four experiments.
+Valid JSON does not necessarily mean that the response contains a valid claim classification. Few-Shot 3 and Few-Shot 5 produced valid JSON but had one and two invalid or missing claim classifications respectively in each run.
 
-![ClaimFast Experiment Dashboard](../outputs/experiment_comparison.png)
+The perfect run agreement indicates repeatability under the experimental setup. It does not establish that every repeated prediction was correct.
 
-# 11. Discussion
+## 10.2 Confusion Matrix Analysis
 
-The experimental results show that prompting strategy has an impact on classification performance.
-Few-Shot 8 achieved the highest classification accuracy, while Few-Shot 8 achieved the highest Macro F1-score.
-Few-Shot 5 provided the lowest processing latency.
-The Few-Shot 8 approach achieved better classification performance but also consumed more prompt tokens and recorded higher latency than the other approaches.
+Confusion matrices were generated for each strategy using Run 1 of the held-out test dataset. The matrices compare the labelled claim category with the model's predicted category.
 
-# 12. Limitations
+| Strategy | Correct Classifications | Classification Errors |
+|---|---:|---:|
+| Zero-Shot | 56 | 4 |
+| Few-Shot 3 | 50 | 10 |
+| Few-Shot 5 | 55 | 5 |
+| Few-Shot 8 | 57 | 3 |
+| Chain-of-Thought | 58 | 2 |
 
-- Each experiment contains only 20 evaluated records.
-- Results may vary with different datasets and models.
-- Processing latency depends on the execution environment.
-- Higher token usage can increase computational cost.
-- Further testing with larger datasets is recommended.
+The Few-Shot 3 matrix showed notable confusion between third-party liability and own-damage claims, with seven third-party liability records predicted as own damage.
 
-# 13. Conclusion
+Zero-Shot confused two own-damage records with glass-only claims. Few-Shot 8 had one own-damage record predicted as glass-only and one theft record predicted as glass-only. Chain-of-Thought had two errors: one third-party liability record and one glass-only record were predicted as own damage.
 
-Based on the recorded experimental results, Few-Shot 8 is the best-performing approach in terms of classification accuracy.
-It achieved 90.00% accuracy and a Macro F1-score of 0.9101.
-However, the choice of prompting strategy should also consider processing time and token consumption.
-Future work should evaluate the system using a larger dataset and additional testing scenarios.
+The complete confusion matrices for all three runs are available as CSV files in outputs/evaluation/. The summary above reports Run 1 and should not be interpreted as an average confusion matrix across all runs.
+
+## 10.3 Error Analysis
+
+An error analysis file containing 75 selected error records was generated, covering up to 15 selected errors per strategy from Run 1. The suggested root-cause categories include incorrect urgency, incorrect claim classification, location over-extraction, date hallucination, injury information extraction, vehicle registration extraction or formatting, and police report status extraction.
+
+Incorrect urgency was a prominent error category. Other examples included extracting a generic setting as a specific incident location, confusing policy numbers with vehicle registration numbers, omitting negative information, and inferring police report status without supporting evidence.
+
+Some records contained more than one suggested root cause, so category combinations should not be counted as independent records. All 75 records are marked "Suggested - needs human verification". Therefore, this analysis is an automated preliminary categorisation, not a completed manual review.
+
+Detailed error records, suggested causes, severity levels, and proposed fixes are available in the evaluation output folder.
+
+# 11. Experimental Visualization
+
+The following dashboard is retained from the preliminary development experiments. It represents the earlier four-strategy comparison and should not be interpreted as the final five-strategy held-out test evaluation.
+
+![ClaimFast Preliminary Experiment Dashboard](outputs/experiment_comparison.png)
+
+The final held-out test results are reported in the tables in Sections 4–10 and in the evaluation files under outputs/evaluation/.
+
+# 12. Discussion
+
+The final held-out test results show that prompting strategy affects classification accuracy, information extraction, processing latency, and token usage.
+
+Chain-of-Thought achieved the highest classification accuracy of 96.67% and the highest Macro F1-score of 0.970. Few-Shot 8 followed with 95.00% accuracy and a Macro F1-score of 0.954. However, Chain-of-Thought did not achieve the highest extraction exact-match rate.
+
+Few-Shot 8 achieved the highest extraction exact-match rate at 68.33%. It also achieved the highest urgency field exact-match rate at 91.67%. However, its incident-date exact-match rate was the lowest among the strategies at 86.67%, and eight incident-date hallucinations were recorded in Run 1.
+
+The results for k=3, k=5, and k=8 did not show a consistent improvement at every step. Classification accuracy increased from 83.33% at k=3 to 91.67% at k=5 and 95.00% at k=8. This suggests that additional examples helped in this experiment, but the improvement was not guaranteed for every metric.
+
+Zero-Shot was the fastest strategy, with an average latency of 1.517 seconds per message. Chain-of-Thought recorded the lowest average total token usage, while Few-Shot 8 had the highest token usage and latency.
+
+The safety results also require attention. In Run 1, Zero-Shot achieved 100% high-urgency recall, while Chain-of-Thought achieved 87.50%. Few-Shot 3 and Chain-of-Thought detected all six injury cases. These findings show why overall classification accuracy alone should not determine the production strategy.
+
+The error analysis identified issues involving urgency prediction, location over-extraction, vehicle registration formatting, missing negative values, date hallucinations, and claim classification. A mixed incident involving broken glass and theft was also identified as a classification challenge. The current results do not establish that Chain-of-Thought consistently solves ambiguous or multi-incident cases; targeted testing is required.
+
+For a workload of 5,000 messages per day, Chain-of-Thought is a promising candidate when classification performance is the main priority. However, its measured average latency of approximately 3.020 seconds per message would require roughly 4.2 hours of sequential processing for 5,000 messages under the measured conditions. This is an estimate, not a production throughput guarantee. A deployment decision should include load testing, parallel processing tests, human review, and monitoring. A hybrid strategy may also be explored, but it has not been tested in this experiment.
+
+# 13. Limitations
+
+- The held-out test dataset contains only 60 synthetic records, so the results may not represent real-world insurance claim messages.
+- The experiments used one local model, llama3.2:3b, through Ollama. Results may differ with other models or execution environments.
+- Each strategy was evaluated over three runs. The small dataset limits the strength of conclusions about general performance.
+- Field-level extraction metrics and injury/high-urgency recall are based on Run 1 only, while the overall strategy comparison uses three-run averages.
+- The error categories were generated automatically and are marked as suggested classifications requiring human verification. They should not be treated as a completed manual review.
+- The experiment did not establish calibrated confidence scores or validate a production confidence threshold.
+- The latency measurements do not represent a production load test with 5,000 daily messages or concurrent requests.
+- Token usage is reported as average total tokens per message. Actual deployment cost will depend on the model, infrastructure, and pricing arrangement.
+- Further testing is needed for multilingual messages, ambiguous incidents, multiple incidents in one message, and unusual claim descriptions.
+
+# 14. Conclusion
+
+This experiment compared Zero-Shot, Few-Shot with k=3, k=5 and k=8, and Chain-of-Thought prompting for the ClaimFast insurance claim-processing task.
+
+On the 60-record held-out test dataset, Chain-of-Thought achieved the highest classification accuracy at 96.67% and the highest Macro F1-score at 0.970. Few-Shot 8 achieved the highest extraction exact-match rate at 68.33%. Zero-Shot was the fastest strategy, with an average latency of approximately 1.517 seconds per message.
+
+No single strategy performed best across every metric. The results demonstrate the importance of evaluating classification, extraction, safety-related recall, latency, and token usage together.
+
+Chain-of-Thought is a promising candidate when classification performance is the primary objective, while Few-Shot 8 showed stronger overall extraction exact match. Before production deployment, ClaimFast should be tested on a larger real-world dataset, with human review for high-risk cases, monitoring for hallucinations, and load testing under realistic workloads.
