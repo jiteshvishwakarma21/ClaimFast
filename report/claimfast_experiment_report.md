@@ -219,35 +219,43 @@ The complete confusion matrices for all three runs are available as CSV files in
 
 ## 10.3 Error Analysis
 
-The error analysis examined 132 error records across the five prompting strategies. From these, 75 records were selected for detailed categorisation, with 15 records per strategy from Run 1.
+## 10.3 Error Analysis
 
-The 75 selected records included extraction errors, classification errors, and combined classification and extraction errors. A total of 94 individual root-cause assignments were identified because some records contained multiple root causes.
+The error analysis examined 132 error records across the five prompting strategies. From these, 75 records were selected for detailed analysis, with 15 records per strategy from Run 1.
 
-The frequency of individual root causes was as follows:
+The selected records were checked by comparing their gold JSON values with the corresponding predicted JSON values. This consistency check identified 26 records where the originally listed mismatch fields did not fully agree with the actual JSON differences. The mismatch-field lists and error categories were updated accordingly.
+
+The corrected set of 75 records contained the following error categories:
+
+| Error Category | Number of Records |
+|---|---:|
+| Extraction error | 55 |
+| Classification error | 10 |
+| Classification and extraction error | 10 |
+| **Total** | **75** |
+
+A total of 94 individual root-cause assignments were identified because some records contained multiple root causes. Their distribution was:
 
 | Root Cause | Frequency |
 |---|---:|
-| Incorrect urgency | 34 |
-| Incorrect claim classification | 17 |
-| Vehicle registration extraction or formatting | 10 |
-| Location over-extraction | 8 |
-| Police report status extraction | 7 |
-| Date hallucination | 7 |
-| Injury information extraction | 5 |
-| Invalid or missing claim classification | 3 |
-| Location extraction error | 2 |
-| Unsupported police report inference | 1 |
+| Urgency rule application error | 34 |
+| Claim-type boundary confusion | 20 |
+| Location extraction or over-extraction error | 10 |
+| Vehicle-registration extraction or formatting error | 10 |
+| Police-report status extraction error | 8 |
+| Date extraction or normalization error | 7 |
+| Injury-status extraction error | 5 |
 | **Total root-cause assignments** | **94** |
 
-Incorrect urgency was the most frequently identified root cause, followed by incorrect claim classification. These findings indicate that interpreting contextual information and distinguishing explicitly provided facts from assumptions were important challenges for the model.
+Incorrect urgency was the most frequently identified issue. Claim-type boundary confusion was the second most frequent. These findings indicate that applying consistent urgency criteria and distinguishing between similar claim categories were important challenges.
 
-Examples included extracting a generic setting as a specific incident location, confusing policy numbers with vehicle registration numbers, omitting explicit negative injury information, inferring police report status without supporting evidence, and generating unsupported incident dates.
+Other observed issues included extracting generic settings as specific incident locations, confusing policy numbers with vehicle registration numbers, omitting explicit negative injury information, incorrectly handling police-report status, and generating unsupported incident dates.
 
-The findings suggest several potential improvements: clearer urgency definitions, contrastive examples for claim classification, stricter vehicle registration validation, and explicit instructions against unsupported date, location, and police-report extraction.
+The proposed improvements include clearer urgency definitions, contrastive examples for similar claim types, stricter vehicle registration validation, and explicit instructions to avoid unsupported date, location, and police-report extraction.
 
-Some records contained multiple root causes, so the frequencies above represent individual root-cause assignments rather than independent records. The 75 records are marked "Suggested - needs human verification". Therefore, this analysis is an automated preliminary categorisation, not a completed manual review.
+The corrected error-analysis sheet contains the gold and predicted JSON values, verified mismatch fields, suggested root causes, severity assessments, and proposed fixes for all 75 selected records.
 
-Detailed error records, suggested causes, severity levels, and proposed fixes are available in the evaluation output folder.
+This analysis uses an AI-assisted consistency check of the gold and predicted JSON values. The root-cause explanations and proposed fixes are suggested interpretations and have not been independently validated by a second human reviewer. Therefore, this work should not be considered a completed independent manual review.
 
 # 11. Experimental Visualization
 
