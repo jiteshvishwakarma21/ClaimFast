@@ -219,11 +219,33 @@ The complete confusion matrices for all three runs are available as CSV files in
 
 ## 10.3 Error Analysis
 
-An error analysis file containing 75 selected error records was generated, covering up to 15 selected errors per strategy from Run 1. The suggested root-cause categories include incorrect urgency, incorrect claim classification, location over-extraction, date hallucination, injury information extraction, vehicle registration extraction or formatting, and police report status extraction.
+The error analysis examined 132 error records across the five prompting strategies. From these, 75 records were selected for detailed categorisation, with 15 records per strategy from Run 1.
 
-Incorrect urgency was a prominent error category. Other examples included extracting a generic setting as a specific incident location, confusing policy numbers with vehicle registration numbers, omitting negative information, and inferring police report status without supporting evidence.
+The 75 selected records included extraction errors, classification errors, and combined classification and extraction errors. A total of 94 individual root-cause assignments were identified because some records contained multiple root causes.
 
-Some records contained more than one suggested root cause, so category combinations should not be counted as independent records. All 75 records are marked "Suggested - needs human verification". Therefore, this analysis is an automated preliminary categorisation, not a completed manual review.
+The frequency of individual root causes was as follows:
+
+| Root Cause | Frequency |
+|---|---:|
+| Incorrect urgency | 34 |
+| Incorrect claim classification | 17 |
+| Vehicle registration extraction or formatting | 10 |
+| Location over-extraction | 8 |
+| Police report status extraction | 7 |
+| Date hallucination | 7 |
+| Injury information extraction | 5 |
+| Invalid or missing claim classification | 3 |
+| Location extraction error | 2 |
+| Unsupported police report inference | 1 |
+| **Total root-cause assignments** | **94** |
+
+Incorrect urgency was the most frequently identified root cause, followed by incorrect claim classification. These findings indicate that interpreting contextual information and distinguishing explicitly provided facts from assumptions were important challenges for the model.
+
+Examples included extracting a generic setting as a specific incident location, confusing policy numbers with vehicle registration numbers, omitting explicit negative injury information, inferring police report status without supporting evidence, and generating unsupported incident dates.
+
+The findings suggest several potential improvements: clearer urgency definitions, contrastive examples for claim classification, stricter vehicle registration validation, and explicit instructions against unsupported date, location, and police-report extraction.
+
+Some records contained multiple root causes, so the frequencies above represent individual root-cause assignments rather than independent records. The 75 records are marked "Suggested - needs human verification". Therefore, this analysis is an automated preliminary categorisation, not a completed manual review.
 
 Detailed error records, suggested causes, severity levels, and proposed fixes are available in the evaluation output folder.
 
